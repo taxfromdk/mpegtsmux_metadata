@@ -1,1 +1,0 @@
-watch -n 0.1 ls -la *.ts

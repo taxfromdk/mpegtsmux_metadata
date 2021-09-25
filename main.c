@@ -62,15 +62,15 @@ int main (int argc, char *argv[])
     GstElement* udpsrc = gst_element_factory_make ("udpsrc", "udpsrc");
 #endif
 
-    if(!pipeline){assert(0);}
+    if(!pipeline){printf("no pipeline\n");exit(1);}
     
-    if(!source){assert(0);}
-    if(!encoder){assert(0);}
-    if(!muxer){assert(0);}
-    if(!filesink){assert(0);}
+    if(!source){printf("no source\n");exit(1);}
+    if(!encoder){printf("no encoder\n");exit(1);}
+    if(!muxer){printf("no muxer\n");exit(1);}
+    if(!filesink){printf("no filesink\n");exit(1);}
 #ifdef USE_KLV
-    if(!queue){assert(0);}
-    if(!udpsrc){assert(0);}
+    if(!queue){printf("no queue\n");exit(1);}
+    if(!udpsrc){printf("no udpsrc\n");exit(1);}
     g_object_set (G_OBJECT (udpsrc), "port", 9001, NULL);
     
 #endif
@@ -97,7 +97,7 @@ int main (int argc, char *argv[])
 
 #ifdef USE_KLV
     
-    GstCaps *my_caps = gst_caps_new_simple ("meta/x-klv", 
+    GstCaps *my_caps = gst_caps_new_simple ("meta/x-klv,sparse=true", 
         "sparse", G_TYPE_BOOLEAN, TRUE, 
         "parsed", G_TYPE_BOOLEAN, TRUE, 
         NULL); 
